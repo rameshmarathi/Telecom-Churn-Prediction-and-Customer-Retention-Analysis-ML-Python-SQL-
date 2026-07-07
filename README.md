@@ -87,3 +87,13 @@ The project focuses on analyzing customer behavior, identifying churn drivers, a
 
 ## Skills Demonstrated
 Python • Machine Learning • Predictive Analytics • Data Cleaning • EDA • Feature Engineering • Streamlit • Customer Analytics • Business Intelligence
+
+## 👨‍💻 Author
+
+**Prahlad Somapurkar**
+
+📧 Email: rameshmarathi7765@gmail.com
+
+💼 LinkedIn: https://www.linkedin.com/ramesh-marathi
+
+🐙 GitHub: https://github.com/rameshmarathi
