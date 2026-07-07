@@ -1,0 +1,64 @@
+# -*- coding: utf-8 -*-
+"""01_data_preprocessing.ipynb
+
+**Customer Churn Data Preprocessing Module** - This module handles data loading, cleaning, encoding, and train-test splitting.
+Enables end-to-end ML workflow for churn prediction.
+"""
+
+# Import Libraries
+import pandas as pd
+#from sklearn.preprocessing import LabelEncoder
+from sklearn.model_selection import train_test_split
+
+# Load Dataset
+
+df = pd.read_csv("telecom_churn_dataset_utf8.csv")
+
+# Data Cleaning
+def clean_data(df: pd.DataFrame) -> pd.DataFrame:
+    """Convert TotalCharges to numeric and remove missing values"""
+    df["TotalCharges"] = pd.to_numeric(df["TotalCharges"], errors="coerce")
+    df.dropna(inplace=True)
+    return df
+
+# Encode Target Variable
+def encode_target(df: pd.DataFrame) -> pd.DataFrame:
+    """Map Churn to binary: Yes=1, No=0"""
+    df["Churn"] = df["Churn"].map({"Yes": 1, "No": 0})
+    return df
+
+# Encode Categorical Features
+
+def encode_features(df: pd.DataFrame) -> pd.DataFrame:
+    """Label encode all categorical columns except customerID"""
+    le = LabelEncoder()
+    for col in df.select_dtypes(include=["object"]).columns:
+        if col != "customerID":
+            df[col] = le.fit_transform(df[col])
+    return df
+
+# Train-Test Split
+def split_data(df: pd.DataFrame):
+    """Split dataset into X_train, X_test, y_train, y_test"""
+    X = df.drop(["Churn", "customerID"], axis=1)
+    y = df["Churn"]
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42
+    )
+
+    return X_train, X_test, y_train, y_test
+
+# Main Execution
+
+if __name__ == "__main__":
+    data_path = pd.read_csv("telecom_churn_dataset_utf8.csv")
+
+    df = data_path
+    df = clean_data(df)
+    df = encode_target(df)
+    df = encode_features(df)
+    X_train, X_test, y_train, y_test = split_data(df)
+
+    print(" Data Preprocessing Completed")
+    print("Training Data Shape:", X_train.shape)
