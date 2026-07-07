@@ -90,7 +90,7 @@ Python • Machine Learning • Predictive Analytics • Data Cleaning • EDA �
 
 ## 👨‍💻 Author
 
-**Prahlad Somapurkar**
+**Ramesh Marathi**
 
 📧 Email: rameshmarathi7765@gmail.com
 
